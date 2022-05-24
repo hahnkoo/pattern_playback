@@ -58,56 +58,50 @@ optional arguments:
 
 ## Examples
 
-- Loading image from a jpg file (from [here](https://splab.net/digital_pattern_playback/) and converting to waveform using the Griffin-Lim algorithm:
+#### Loading image from a jpg file (from [here](https://splab.net/digital_pattern_playback/)) and converting to waveform using the Griffin-Lim algorithm:
 
 ```
 python pattern_playback.py --duration 3 --sampling_rate 16000 --load ./examples/example1.jpg --griffinlim --save_wav ./examples/example1.wav --show_graphs
 ```
 
 > Input
-<img src="./examples/example1.jpg">
+<img src="./examples/example1.jpg" width=400>
 
-> Output
-<img src="./examples/example1_output.png">
+> Output [[wav](./examples/example1.wav)] [[mp3](./examples/example1.mp3)]
 
-<audio controls>
-<source src="./examples/example1.mp3">
-</audio>
+<img src="./examples/example1_output.png" width=400>
 
 
-- Cropping image from a png file (from Ladefoged & Johnson, 2014) and converting to waveform using the Griffin-Lim algorithm:
+#### Cropping image from a png file (from Ladefoged & Johnson, 2014) and converting to waveform using the Griffin-Lim algorithm:
 
 ```
 python pattern_playback.py --duration 0.4 --sampling_rate 8000 --load ./examples/example2.png --crop --griffinlim --save_wav ./examples/example2.wav --show_graphs
 ```
 
 > Input
-<img src="./examples/example2_cropped.png">
+<img src="./examples/example2_cropped.png" width=400>
 
-> Output
-<img src="./examples/example2_output.png">
+> Output [[wav](./examples/example2.wav)] [[mp3](./examples/example2.mp3)]
 
-<audio controls>
-<source src="./examples/example2.mp3">
-</audio>
+<img src="./examples/example2_output.png" width=400>
 
-- Cropping image from a png file (from Cooper et al., 1952) and converting to waveform assuming zero phase spectrum:
+
+#### Cropping image from a png file (from Cooper et al., 1952) and converting to waveform assuming zero phase spectrum:
 
 ```
 python pattern_playback.py --duration 1.1 --sampling_rate 8000 --load ./examples/example4.png --crop --save_wav ./examples/example4.wav --show_graphs
 ```
 
 > Input
-<img src="./examples/example4_cropped.png">
+<img src="./examples/example4_cropped.png" width=400>
 
-> Output
-<img src="./examples/example4_output.png">
+> Output [[wav](./examples/example4.wav)] [[mp3](./examples/example4.mp3)]
 
-<audio controls>
-<source src="./examples/example4.mp3">
-</audio>
+<img src="./examples/example4_output.png" width=400>
 
-- Drawing on a blank canvas (my attempt to recreate "salmon" in Cooper the figure above) and converting to waveform assuming zero phase spectrum:
+
+
+#### Drawing on a blank canvas (my attempt to recreate "salmon" in Cooper the figure above) and converting to waveform assuming zero phase spectrum:
 
 ```
 python pattern_playback.py --duration 0.5 --sampling_rate 8000 --draw --save_drawing ./examples/example3.png --save_wav ./examples/example3.wav --show_graphs
@@ -115,14 +109,12 @@ python pattern_playback.py --duration 0.5 --sampling_rate 8000 --draw --save_dra
 
 
 > Input
-<img src="./examples/example3.png">
+<img src="./examples/example3.png" width=400>
 
-> Output
-<img src="./examples/example3_output.png">
+> Output [[wav](./examples/example3.wav)] [[mp3](./examples/example3.mp3)]
 
-<audio controls>
-<source src="./examples/example3.mp3">
-</audio>
+<img src="./examples/example3_output.png" width=400>
+
 
 
 ## References
