@@ -101,7 +101,7 @@ python pattern_playback.py --duration 1.1 --sampling_rate 8000 --load ./examples
 
 
 
-#### Drawing on a blank canvas (my attempt to recreate "salmon" in Cooper the figure above) and converting to waveform assuming zero phase spectrum:
+#### Drawing on a blank canvas (my attempt to recreate "salmon" in the figure above) and converting to waveform assuming zero phase spectrum:
 
 ```
 python pattern_playback.py --duration 0.5 --sampling_rate 8000 --draw --save_drawing ./examples/example3.png --save_wav ./examples/example3.wav --show_graphs
