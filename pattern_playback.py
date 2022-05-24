@@ -71,7 +71,12 @@ def remove_top_gridline(image, threshold=10):
 	te = 0
 	if np.std(center_half[ts]) < threshold:
 		te = ts
-		while means[ts] == means[te]: te += 1
+		stop = False
+		while not stop:
+			end_of_list = (te >= len(means) - 1)
+			same_as_before = (means[ts] != means[te])
+			stop = end_of_list or same_as_before
+			if not stop: te += 1
 	return image[te:]
 
 def remove_gridlines(image):
@@ -169,15 +174,15 @@ class Spectrogram:
 
 if __name__ == '__main__':
 
-	parser = argparse.ArgumentParser()
+	parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 	parser.add_argument('--duration', type=float, default=1, required=True)
 	parser.add_argument('--sampling_rate', type=int, default=16000, required=True)
-	parser.add_argument('--load', help='img file to load')
+	parser.add_argument('--load', help='image file to load')
 	parser.add_argument('--crop', action='store_true', help='whether to crop from image')
 	parser.add_argument('--draw', action='store_true', help='whether to draw a spectrogram on a blank canvas')
 	parser.add_argument('--canvas_width', type=int, default=1200, help='canvas width')
-	parser.add_argument('--canvas_height', type=int, default=600, help='canvas width')
-	parser.add_argument('--canvas_margin', type=int, default=50, help='canvas margin outside the grid')
+	parser.add_argument('--canvas_height', type=int, default=600, help='canvas height')
+	parser.add_argument('--canvas_margin', type=int, default=50, help='canvas margin')
 	parser.add_argument('--save_drawing', default='spectrogram.png', help='save the spectrogram you drew on canvas as')
 	parser.add_argument('--show_graphs', action='store_true', help='whether to display the loaded spectrogram, reconstructed waveform and its spectrogram')
 	parser.add_argument('--griffinlim', action='store_true', help='whether to use the Griffin-Lim algorithm to reconstruct the waveform instead of assuming zero phase')
@@ -207,13 +212,17 @@ if __name__ == '__main__':
 	s = Spectrogram(image, crop=args.crop, sampling_rate=args.sampling_rate, duration=args.duration)
 	t, x = s.to_waveform(args.sampling_rate, griffinlim=args.griffinlim)
 	if args.show_graphs:
-		fig, ax = plt.subplots(2, 1)
+		width = 10; height = 9
+		fig, ax = plt.subplots(2, 1, figsize=(width, height))
 		s.plot(ax[0], sampling_rate=args.sampling_rate)
 		ax[0].set_title('Spectrogram reconstructed from image')
 		ax[1].plot(t, x, color='black')
 		ax[1].set_title('Synthesized waveform')
 		ax[1].set_xlim(left=0, right=t[-1])
+		ax[1].set_xlabel('time (seconds)')
 		fig.subplots_adjust(hspace=0.5)
+		#fig.subplots_adjust(left=0.025, right=0.975)
 		plt.show()
+	x = np.array(x / max(abs(x)) * 2**15, dtype=np.int16)
 	wavfile.write(args.save_wav, args.sampling_rate, x)
 	sys.stderr.write('# Saved waveform as ' + args.save_wav + '\n')
