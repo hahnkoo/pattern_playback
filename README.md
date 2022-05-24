@@ -85,7 +85,7 @@ python pattern_playback.py --duration 0.4 --sampling_rate 8000 --load ./examples
 <img src="./examples/example2_cropped.png">
 
 > Output
-<img "src=./examples/example2_output.png">
+<img src="./examples/example2_output.png">
 
 <audio controls>
 <source src="./examples/example2.mp3">
